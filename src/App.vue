@@ -2,15 +2,17 @@
   <div class="container">
     Quiz
     <div class="margin-top:20px">
-      {{ question.title }}
-      separation
-      <br/>
-      <br/>
-       <!--{{ question.questions[0] }}
-      <br/>
-      <br/>
-      {{ question.questions[0].choices }}-->
+      {{ question.title }}<br />
+      <br />
+      {{ question.questions[0].question }}
+      <br />
+      <br />
+      {{ question.questions[0].choices }}
+      <br />
+      <br />
+      {{ question.questions[0].choices[1] }}
     </div>
+
   </div>
 </template>
 
@@ -19,11 +21,20 @@ import { computed, onMounted, ref } from 'vue'
 
 const question = ref([])
 
-onMounted(() => {
-  const recupQuestion = fetch('../public/quiz.json')
+async function fetchQuiz() {
+  await fetch('../public/quiz.json',)
     .then(r => r.json())
     .then(v => question.value = v)
-  console.log(question)
-})
+}
+
+fetchQuiz()
+
+/* onMounted(() => {
+  fetch('../public/quiz.json')
+    .then(r => r.json())
+    .then(v => question.value = v)
+  throw new Error('pas chargé le quiz')
+})*/
+console.log(question)
 
 </script>
