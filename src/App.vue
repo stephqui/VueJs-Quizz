@@ -6,7 +6,7 @@
       </p>
     </div>
     <div :aria-busy="state === 'loading'">
-      <Quiz :quiz="quiz" v-if="quiz" />
+      <Quiz :quizProps="quiz" v-if="quiz" />
     </div>
   </div>
 
