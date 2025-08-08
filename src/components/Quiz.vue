@@ -1,9 +1,8 @@
 <template>
     <div>
         <h1>{{ quizProps.title }}</h1>
-        <Progress :valueProps="step" :maxProps="quizProps.questions.length - 1" />
-        <Question :question="question" v-if="question"/>
-
+        <Progress :value="step" :max="quizProps.questions.length - 1" ></Progress>
+        <Question :questionProps="question"/>
     </div>
 </template>
 <script setup>

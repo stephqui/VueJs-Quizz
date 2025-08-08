@@ -1,15 +1,15 @@
 <template>
     <div>
-        Etape {{ valueProps + 1 }}/{{ maxProps + 1 }}
-        <progress :value="valueProps + 1" :max="maxProps"/>
+        Etape {{ value + 1 }}/{{ max + 1 }}
+        <progress :value="value + 1" :max="max"/>
     </div>
 </template>
 
 <script setup>
 
 defineProps({
-    valueProps: Number,
-    maxProps: Number
+    value: Number,
+    max: Number
 })
 
 </script>
