@@ -1,40 +1,51 @@
 <template>
   <div class="container">
     Quiz
-    <div class="margin-top:20px">
-      {{ question.title }}<br />
-      <br />
-      {{ question.questions[0].question }}
-      <br />
-      <br />
-      {{ question.questions[0].choices }}
-      <br />
-      <br />
-      {{ question.questions[0].choices[1] }}
+    <br /><br />
+   
+    <div v-if="loadingState === 'error'">
+      <p>
+        Impossible de charger le quiz
+      </p>
     </div>
-
+    <div :aria-busy="state === 'loading'">
+       {{ quiz }}<br />
+    <br />
+    </div>
+    <div>
+      <!--{{ quiz.questions[0].question }}
+      <br />
+      <br />
+      {{ quiz.questions[0].choices }}
+      <br />
+      <br />
+      {{ quiz.questions[0].choices[1] }}-->
+    </div>
   </div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 
-const question = ref([])
+const quiz = ref(null)
+const loadingState = ref('loading')//Pour avoir le feedback sur l'état de chargement des données
 
-async function fetchQuiz() {
-  await fetch('../public/quiz.json',)
-    .then(r => r.json())
-    .then(v => question.value = v)
-}
-
-fetchQuiz()
-
-/* onMounted(() => {
+onMounted(() => {
   fetch('../public/quiz.json')
-    .then(r => r.json())
-    .then(v => question.value = v)
-  throw new Error('pas chargé le quiz')
-})*/
-console.log(question)
+    .then(r => {
+      if (r.ok) {
+        return r.json()
+      }
+      throw new Error('Impossible de charger le json')
+    })
+    .then(data => {
+      quiz.value = data
+      loadingState.value = 'idle'
+    })
+    .catch(e => {
+      loadingState.value = 'error'
+    })
+})
+
 
 </script>
