@@ -1,11 +1,8 @@
 <template>
-    <div >
-        <input type="radio">
-        <label>
-            {{ listAnswerProps }}
-        </label>
-    </div>
-
+    <input type="radio">
+    <label>
+        {{ listAnswerProps }}
+    </label>
 </template>
 
 <script setup>

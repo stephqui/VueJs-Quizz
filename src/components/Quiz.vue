@@ -3,9 +3,11 @@
         <h1>{{ quizProps.title }}</h1>
         <Progress :value="step" :max="quizProps.questions.length - 1"></Progress>
         <Question :questionProps="question" />
-        <div  v-for="item in answer">
-            <SelectAnswer :listAnswerProps="item" />
-        </div>
+        <ul>
+            <li v-for="choice in computedChoices">
+                <SelectAnswer :listAnswerProps="choice" />
+            </li>
+        </ul>
     </div>
 </template>
 <script setup>
@@ -21,5 +23,5 @@ const props = defineProps({
 
 const step = ref(0)
 const question = computed(() => props.quizProps.questions[step.value])
-const answer = computed(() => props.quizProps.questions[step.value].choices)
+const computedChoices = computed(() => props.quizProps.questions[step.value].choices)
 </script>
