@@ -8,6 +8,7 @@
 <script setup>
 
 defineProps({
-    listAnswerProps: Object
+    listAnswerProps: Object,
+    leVmodel: String
 })
 </script>
