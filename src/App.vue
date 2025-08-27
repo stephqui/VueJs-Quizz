@@ -15,7 +15,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import Quiz from './components/Quiz.vue'
-import Question from './components/Question.vue'
 
 const quiz = ref(null)
 const state = ref('loading')//Pour avoir le feedback sur l'état de chargement des données
