@@ -28,7 +28,7 @@ const hasAnswer = computed(() => refAnswer.value !== null)
 const randomChoices = computed(() => shuffleArray(props.questionProps.choices))
 let timer
 
-const onAnswer = (e) => {
+const onAnswer = () => {
     clearTimeout(timer)
     timer = setTimeout(() => {
         emits('answer', refAnswer.value)
@@ -37,7 +37,8 @@ const onAnswer = (e) => {
 
 onMounted(() => {
     timer = setTimeout(() => {
-        emits('answer', refAnswer.value)
+        refAnswer.value=''
+        onAnswer()
     }, 4_000);
 })
 onUnmounted(() => {
